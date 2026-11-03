@@ -53,3 +53,13 @@ The tests were executed in the browser while logged out. The readings API correc
 | Submit sensor reading with temperature -500 °C | HTTP 400 Bad Request; `Invalid reading` returned by Zod validation | PASS |
 
 The test was executed while logged in as Admin. The API rejected the invalid input before inserting a sensor-reading document into MongoDB.
+
+Actual Result: HTTP 201 Created. The reading was stored in
+sensor_readings with risk LOW and score 0. No corresponding
+document was created in risk_alerts.
+Status: PASS
+
+Actual Result: HTTP 201 Created. The reading was stored in
+sensor_readings with risk HIGH and score 80. A corresponding
+document was created in risk_alerts with the matching readingId.
+Status: PASS
