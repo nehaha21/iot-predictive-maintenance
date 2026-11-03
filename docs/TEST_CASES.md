@@ -75,3 +75,15 @@ two LOW-risk readings (scores 0) and one HIGH-risk reading
 (score 80).
 
 Status: PASS
+
+Test: Prevent unauthenticated sensor reading creation
+Action: Log out and send POST /api/readings with valid sensor data.
+
+Expected Result: HTTP 401 Unauthorized. No reading is inserted.
+
+Actual Result: The first POST returned 201 because the session
+was still active. After calling POST /api/auth/logout (200),
+GET /api/readings returned 401 Unauthorized. This confirms
+the session was cleared successfully.
+
+Status: PASS
