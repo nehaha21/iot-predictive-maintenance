@@ -45,3 +45,11 @@ Both tests were executed while logged in with the technician account. The server
 | Retrieve `/api/readings` after logout | HTTP 401, `{error: "UNAUTHORIZED"}` | PASS |
 
 The tests were executed in the browser while logged out. The readings API correctly rejected the unauthenticated request.
+
+## Actual MongoDB validation test results
+
+| Test | Actual result | Status |
+|---|---|---|
+| Submit sensor reading with temperature -500 °C | HTTP 400 Bad Request; `Invalid reading` returned by Zod validation | PASS |
+
+The test was executed while logged in as Admin. The API rejected the invalid input before inserting a sensor-reading document into MongoDB.
