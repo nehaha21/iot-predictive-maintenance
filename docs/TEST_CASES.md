@@ -63,3 +63,15 @@ Actual Result: HTTP 201 Created. The reading was stored in
 sensor_readings with risk HIGH and score 80. A corresponding
 document was created in risk_alerts with the matching readingId.
 Status: PASS
+
+Test: Retrieve sensor readings from MongoDB
+Action: Send GET request to /api/readings as an authenticated user.
+
+Expected Result: HTTP 200 OK. The API returns stored sensor
+readings, including their risk classifications and scores.
+
+Actual Result: HTTP 200 OK. Three sensor readings were returned:
+two LOW-risk readings (scores 0) and one HIGH-risk reading
+(score 80).
+
+Status: PASS
