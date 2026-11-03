@@ -319,3 +319,20 @@ Both members should contribute to database and application development and make 
 The prototype integrates a relational database, a NoSQL time-series document store and a web dashboard. It demonstrates data integrity, role-aware access, CRUD operations, aggregation, indexes, views, a trigger and a stored procedure.
 
 The risk score is a threshold-based demonstration and should not be represented as a trained predictive model without a separately trained and evaluated model.
+
+### MongoDB Database-Level Security
+
+The project uses MongoDB Community Server locally for development.
+The current local MongoDB connection uses localhost without
+username/password authentication.
+
+Application-level security is implemented through JWT authentication,
+role-based access control, and protected API routes.
+
+Database-level MongoDB authentication and custom database user roles
+are not configured in the current development setup.
+
+For production deployment, MongoDB authentication should be enabled,
+a dedicated database user with least-privilege permissions should
+be created, and credentials should be stored securely in environment
+variables.
