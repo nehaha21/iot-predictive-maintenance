@@ -27,3 +27,12 @@ Record the actual result after executing; do not mark tests passed without runni
 | TC22 | Create a LOW-risk reading | Reading saved without a risk alert |
 | TC23 | Create a HIGH-risk reading | Reading saved and corresponding risk alert created |
 | TC24 | Verify MongoDB indexes in Compass | Required compound indexes visible in both collections |
+
+## Actual RBAC security test results
+
+| Test | Actual result | Status |
+|---|---|---|
+| Technician attempts to update machine using PATCH | HTTP 403 Forbidden | PASS |
+| Technician attempts to delete machine using DELETE | HTTP 403 Forbidden | PASS |
+
+Both tests were executed while logged in with the technician account. The server rejected both administrative operations with `FORBIDDEN`.
