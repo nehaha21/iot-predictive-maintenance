@@ -17,3 +17,13 @@ Record the actual result after executing; do not mark tests passed without runni
 | TC12 | Load dashboard | Counts and latest records visible |
 | TC13 | Query `machine_maintenance_summary` | Aggregated machine data |
 | TC14 | Call `get_machine_maintenance(1)` | Maintenance rows for machine 1 |
+| TC15 | Retrieve sensor readings using `/api/readings` while authenticated | 200 and readings returned |
+| TC16 | Update an existing reading using `/api/readings/[id]` with PATCH | 200 and updated reading returned |
+| TC17 | Update a reading with changed sensor values | Risk score and risk category recalculated; associated alert synchronized |
+| TC18 | Delete an existing reading as admin | 200 and reading deleted |
+| TC19 | Delete a reading as technician | 403 Forbidden |
+| TC20 | Update or delete using an invalid MongoDB ObjectId | 400 Invalid ID |
+| TC21 | Create a reading with invalid sensor values | 400 validation failure |
+| TC22 | Create a LOW-risk reading | Reading saved without a risk alert |
+| TC23 | Create a HIGH-risk reading | Reading saved and corresponding risk alert created |
+| TC24 | Verify MongoDB indexes in Compass | Required compound indexes visible in both collections |
