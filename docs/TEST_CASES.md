@@ -36,3 +36,12 @@ Record the actual result after executing; do not mark tests passed without runni
 | Technician attempts to delete machine using DELETE | HTTP 403 Forbidden | PASS |
 
 Both tests were executed while logged in with the technician account. The server rejected both administrative operations with `FORBIDDEN`.
+
+## Actual authentication test results
+
+| Test | Actual result | Status |
+|---|---|---|
+| Logout using POST `/api/auth/logout` | HTTP 200, `{ok: true}` | PASS |
+| Retrieve `/api/readings` after logout | HTTP 401, `{error: "UNAUTHORIZED"}` | PASS |
+
+The tests were executed in the browser while logged out. The readings API correctly rejected the unauthenticated request.
