@@ -1,5 +1,4 @@
 # Test cases
-
 Record the actual result after executing; do not mark tests passed without running them.
 
 | ID | Test | Expected result |
