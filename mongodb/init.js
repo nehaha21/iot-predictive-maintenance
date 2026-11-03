@@ -1,9 +1,27 @@
 // Run with: mongosh mongodb/init.js
+
 const dbx = db.getSiblingDB("industrial_maintenance");
-dbx.sensor_readings.createIndex({machineId:1, recordedAt:-1});
-dbx.sensor_readings.createIndex({risk:1, recordedAt:-1});
-dbx.risk_alerts.createIndex({risk:1, recordedAt:-1});
-dbx.risk_alerts.createIndex({machineId:1, recordedAt:-1});
-dbx.sensor_readings.createIndex({recordedAt:1},{expireAfterSeconds:0,name:"optional_ttl_not_enabled"});
-// NOTE: TTL index is intentionally not applied automatically because this project retains
-// historical readings for analysis. Remove the last createIndex line if running this file.
+
+// Sensor reading indexes
+dbx.sensor_readings.createIndex(
+  { machineId: 1, recordedAt: -1 },
+  { name: "idx_sensor_machine_time" }
+);
+
+dbx.sensor_readings.createIndex(
+  { risk: 1, recordedAt: -1 },
+  { name: "idx_sensor_risk_time" }
+);
+
+// Risk alert indexes
+dbx.risk_alerts.createIndex(
+  { risk: 1, recordedAt: -1 },
+  { name: "idx_alert_risk_time" }
+);
+
+dbx.risk_alerts.createIndex(
+  { machineId: 1, recordedAt: -1 },
+  { name: "idx_alert_machine_time" }
+);
+
+print("MongoDB indexes initialized successfully.");
