@@ -87,3 +87,16 @@ GET /api/readings returned 401 Unauthorized. This confirms
 the session was cleared successfully.
 
 Status: PASS
+
+Test: Update sensor reading and synchronize risk alert
+Action: PATCH /api/readings/{id}, changing temperature from 75 to 90.
+
+Expected Result: HTTP 200. The reading is updated, risk is
+recalculated, and the corresponding alert is synchronized.
+
+Actual Result: HTTP 200. Temperature changed to 90,
+risk changed from LOW to MEDIUM, and score changed to 40.
+The corresponding risk_alerts document was created with
+the matching readingId, MEDIUM risk and score 40.
+
+Status: PASS
